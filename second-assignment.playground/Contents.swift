@@ -1,8 +1,9 @@
 import UIKit
 
 let text : String = "La HistoriA de mI vidA"
+var dictionary = [Character:Int]()
 
-func textCount (text: String){
+func textCount (text: String) -> Dictionary<Character, Int>{
     let textLowerCased = text.lowercased()
     var dictionary = [Character:Int]()
     for letter in textLowerCased {
@@ -15,9 +16,15 @@ func textCount (text: String){
             dictionary[letter] = 1
         }
     }
+    return dictionary
+}
+
+func printDictionary (dictionary: Dictionary<Character, Int>) {
     for value in dictionary {
         print("\(value.key) = \(value.value)")
     }
 }
 
-textCount(text: text)
+dictionary = textCount(text: text)
+printDictionary(dictionary: dictionary)
+
