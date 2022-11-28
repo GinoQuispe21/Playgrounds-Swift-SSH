@@ -1,11 +1,11 @@
 import UIKit
 
-let text : String = "la historia de mi vida"
+let text : String = "La HistoriA de mI vidA"
 
 func textCount (text: String){
-    
+    let textLowerCased = text.lowercased()
     var dictionary = [Character:Int]()
-    for letter in text {
+    for letter in textLowerCased {
         if letter == " " {continue}
         if dictionary.keys.contains(letter){
             if let aux = dictionary[letter] {
@@ -21,4 +21,3 @@ func textCount (text: String){
 }
 
 textCount(text: text)
-

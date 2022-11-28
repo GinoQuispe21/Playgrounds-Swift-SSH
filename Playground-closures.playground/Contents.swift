@@ -1,30 +1,50 @@
 import UIKit
 
-func login(completion: (Bool, Int) -> ()) {
-    completion(true, 1)
+// Closures
+
+func sortedArray (_ array: [Int]) -> [Int] {
+    return array.sorted()
 }
 
-login(completion: { isLogin, num in
-    print("Usuario Conectado")
-})
+func manipulateArray(_ array: [Int], functionSorted: ([Int]) -> [Int]){
+//  Sorted Function
+    let sorted = functionSorted(array)
+//  Manipulate Functions
+    print(sorted)
+}
 
-login{ isLogin, num in
+manipulateArray([9,4,8,1,6,2,7,3,5], functionSorted: sortedArray(_:))
+manipulateArray([9,4,8,1,6,2,7,3,5], functionSorted: sortedArray)
+manipulateArray([9,4,8,1,6,2,7,3,5]) { (array) -> [Int] in
+    //    return array.sorted { $0 > $1 }
+    array.sorted {$0 > $1}
+}
+manipulateArray([9,4,8,1,6,2,7,3,5]) { $0.sorted {$0 > $1} }
+    
+// Login Simulate
+
+func login(completion: @escaping (Bool, Int) -> ()) {
+    DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+        completion(true, 1)
+    }
+}
+
+login(completion: {isLogin, num in
     if isLogin {
         print("usuario \(num) conectado")
     } else {
         print("usuario \(num) no conectado")
     }
-}
+})
 
 let today = Date()
-let aux = String(today)
 
 let dataFormatter = DateFormatter()
 dataFormatter.dateFormat = "dd/mm/yyyy"
 let date = dataFormatter.date(from: "21/04/2001")
 let date1 = dataFormatter.date(from: "01/10/2001")
 let date2 = dataFormatter.date(from: "11/05/2011")
-let currentDate = dataFormatter.date(from: aux)
+//let currentDate = dataFormatter.date(from: aux)
 
 print(date ?? 0)
 
