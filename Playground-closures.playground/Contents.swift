@@ -79,3 +79,27 @@ func older() {
 }
 
 older()
+
+// More Closures
+
+//func retrieveUsernames(userId: Int, completion: (String) -> ()) {
+//    let arrayUser = ["Pepito","Luis","Pablo","Manuel"]
+//    completion(arrayUser[userId])
+//}
+//
+//retrieveUsernames(userId: 2) { username in
+//    print("-->> Username: \(username)")
+//}
+
+func retrieveUsernames(userId: Int, completion: @escaping (String) -> ()) {
+    let arrayUser = ["Pepito","Luis","Pablo","Manuel"]
+    print("-->> before")
+    DispatchQueue.main.asyncAfter(deadline: .now() + 3.0) {
+        print("-->> after")
+        completion(arrayUser[userId])
+    }
+}
+
+retrieveUsernames(userId: 2) { username in
+    print("-->> username:: \(username)")
+}
